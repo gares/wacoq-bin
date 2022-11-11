@@ -19,14 +19,14 @@
  (target dllcoqrun_stubs.wasm)
  (deps byterun_stubs.c)
  (action
-  (bash "/opt/wasi-sdk/bin/clang -target wasm32-unknown-emscripten -D__wasi__ -fPIC \
+  (bash "$WASI_SDK_PATH/bin/clang -target wasm32-unknown-emscripten -D__wasi__ -fPIC \
 	  byterun_stubs.c -o %{target} -nostdlib -Wl,--shared -Wl,--export-all \
-      -I%{ocaml-config:standard_library}")))
+      -I%{ocaml-config:standard_library} -I$WASI_SDK_PATH/share/wasi-sysroot/include/")))
 
 (rule
  (target dlllib_stubs.wasm)
  (deps lib_stubs.c)
  (action
-  (bash "/opt/wasi-sdk/bin/clang -target wasm32-unknown-emscripten -D__wasi__ -fPIC \
+  (bash "$WASI_SDK_PATH/bin/clang -target wasm32-unknown-emscripten -D__wasi__ -fPIC \
 	  lib_stubs.c -o %{target} -nostdlib -Wl,--shared -Wl,--export-all \
-      -I%{ocaml-config:standard_library}")))
+      -I%{ocaml-config:standard_library} -I$WASI_SDK_PATH/share/wasi-sysroot/include/")))
