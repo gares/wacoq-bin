@@ -16,8 +16,9 @@ class IcoqPod extends EventEmitter {
 
     constructor(binDir?: string) {
         super();
-        binDir = binDir || (typeof fetch === 'undefined'
-                            || process.env.NODE_NOW ? './bin' : '../bin');
+        binDir = 'https://www-sop.inria.fr/teams/marelle/MC-2022/node_modules/wacoq-bin/bin';
+        //binDir = 'file:///home/gares/COQ/WACOQ/deploy/node_modules/wacoq-bin/bin';
+
         this.binDir = binDir;
 
         this.core = new OCamlExecutable({stdin: false, tty: false, binDir});
